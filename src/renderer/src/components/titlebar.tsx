@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { useTheme } from "@/components/theme-provider"
 import { Sun, Moon, X, Square, Minus } from "lucide-react"
-import dotlineImage from "../../../../resources/dotline.png"
 import data from "../../../../package.json"
 import { Switch } from "@/components/ui/switch"
 import { useOverlayVisibility } from "@/hooks/overlay"
@@ -27,10 +26,9 @@ function Titlebar() {
       }}
     >
       <div className="flex items-center gap-2 text-base font-semibold">
-        <img src={dotlineImage} alt="" className="w-5 h-5" />
         Dotline
-        <div className="rounded-full bg-accent pl-2 pr-2 text-xs pt-1 pb-1 ">
-          <p>Alpha</p>
+        <div className="rounded-full bg-primary pl-2 pr-2 text-xs pt-1 pb-1 ">
+          <p className="text-primary-foreground">Alpha</p>
         </div>
         <p className="text-sm text-muted-foreground">v{data.version}</p>
       </div>

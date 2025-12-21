@@ -4,14 +4,20 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
+import { COLOR_PRESETS, applyColorPreset } from "@/lib/utils"
 
 function Settings() {
   const [rpcEnabled, setRpcEnabled] = useState<boolean>(true)
   const [checking, setChecking] = useState(false)
+  const [currentColor, setCurrentColor] = useState<string>("lime")
 
   useEffect(() => {
     const disabled = localStorage.getItem("discordRpcDisabled")
     setRpcEnabled(!(disabled === "true"))
+
+    const savedColor = localStorage.getItem("colorPreset") || "lime"
+    setCurrentColor(savedColor)
+    applyColorPreset(savedColor as keyof typeof COLOR_PRESETS)
   }, [])
 
   const handleToggleRpc = async (checked: boolean) => {
@@ -23,6 +29,11 @@ function Settings() {
       localStorage.setItem("discordRpcDisabled", "true")
       await window.electron.ipcRenderer.invoke("stop-discord-rpc")
     }
+  }
+
+  const handleColorChange = (colorName: string) => {
+    setCurrentColor(colorName)
+    applyColorPreset(colorName as keyof typeof COLOR_PRESETS)
   }
 
   // const openLogs = async () => {
@@ -99,6 +110,27 @@ function Settings() {
               >
                 Report / Request (on GitHub)
               </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Theme Color</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center justify-between">
+            <Label>Dotline Theme Color</Label>
+            <div className="flex items-center gap-2">
+              {Object.entries(COLOR_PRESETS).map(([key, value]) => (
+                <Button
+                  key={key}
+                  variant={currentColor === key ? "default" : "outline"}
+                  onClick={() => handleColorChange(key)}
+                >
+                  {value.label}
+                </Button>
+              ))}
             </div>
           </div>
         </CardContent>

@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client"
 import App from "./App"
 import { HashRouter as Router } from "react-router"
 import { PostHogProvider } from "posthog-js/react"
+import { applyColorPreset, COLOR_PRESETS } from "./lib/utils"
 
 const options = {
   api_host: "https://us.i.posthog.com",
@@ -17,6 +18,10 @@ const isOverlay = params.get("overlay") === "1"
 if (isOverlay) {
   document.body.style.background = "transparent"
 }
+
+// Apply saved color preset on app startup
+const savedColor = localStorage.getItem("colorPreset") || "lime"
+applyColorPreset(savedColor as keyof typeof COLOR_PRESETS)
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
