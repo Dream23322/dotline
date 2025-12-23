@@ -200,6 +200,19 @@ function Editor() {
     }
   }
 
+  const switchPreviewBackground = (): void => {
+    const previewContainer = document.getElementById("preview-container")
+    if (previewContainer) {
+      if (previewContainer.classList.contains("bg-black")) {
+        previewContainer.classList.remove("bg-black")
+        previewContainer.classList.add("bg-white")
+      } else {
+        previewContainer.classList.remove("bg-white")
+        previewContainer.classList.add("bg-black")
+      }
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto space-y-4">
       <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -226,12 +239,18 @@ function Editor() {
         <div className="lg:col-span-5 lg:sticky lg:top-4 lg:self-start">
           <Card className="h-full">
             <CardHeader>
-              <CardTitle>Preview</CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle>Preview</CardTitle>
+                <Button onClick={switchPreviewBackground} variant="outline" size="sm" className="w-fit h-fit px-2 py-1 text-xs">
+                  Background
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-center">
                 <div
-                  className="rounded-md border bg-white relative flex items-center justify-center"
+                  id="preview-container"
+                  className="rounded-md border bg-black relative flex items-center justify-center"
                   style={{ width: 320, height: 320 }}
                 >
                   <Crosshair mode="embed" config={scaleConfigForPreview(config, 300)} />
