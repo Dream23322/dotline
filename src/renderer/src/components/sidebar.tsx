@@ -3,8 +3,8 @@ import { NavLink } from "react-router"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Home, Settings, Menu, Pencil, Move3D } from "lucide-react"
-import Discord from "./discord"
 import Github from "./github"
+import backgroundImage from "../../../../resources/background.png"
 
 function Sidebar() {
   const [collapsed, setCollapsed] = useState(true)
@@ -66,6 +66,11 @@ function Sidebar() {
         "left-0 top-[var(--titlebar-height)] h-full bg-background border-r flex flex-col transition-[width] duration-300 ease-in-out",
         collapsed ? "w-14" : "w-56"
       )}
+      style={{
+        backgroundImage: `url('${backgroundImage}')`,
+        backgroundSize: 'auto 100%',
+        backgroundPosition: '30% 50%',
+      }}
     >
       <div className={cn("flex items-center justify-between p-2", collapsed && "border-b")}>
         <Button
@@ -106,7 +111,7 @@ function Sidebar() {
           </NavLink>
         ))}
 
-        <a
+        {/* <a
           href="https://discord.com/invite/En5YJYWj3Z"
           target="_blank"
           className={cn(
@@ -120,9 +125,9 @@ function Sidebar() {
           </span>
           <Label>Discord</Label>
           <Tooltip text="Discord" />
-        </a>
+        </a> */}
         <a
-          href="https://github.com/Parcoil/dotline"
+          href="https://github.com/Dream23322/dotline"
           target="_blank"
           className={cn(
             "group relative flex items-center rounded-md px-2.5 py-2 text-sm transition-all active:scale-95 gap-2",

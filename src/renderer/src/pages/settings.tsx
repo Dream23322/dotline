@@ -91,7 +91,7 @@ function Settings() {
           <div className="flex items-center justify-between">
             <Label>Report a issue or Request a feature </Label>
             <div className="flex items-center gap-2">
-              <Button
+              {/* <Button
                 variant="outline"
                 onClick={() => {
                   try {
@@ -100,11 +100,11 @@ function Settings() {
                 }}
               >
                 Support (on Discord)
-              </Button>
+              </Button> */}
               <Button
                 onClick={() => {
                   try {
-                    window.open("https://github.com/Parcoil/dotline/issues/new/choose", "_blank")
+                    window.open("https://github.com/Dream23322/dotline/issues/new/choose", "_blank")
                   } catch {}
                 }}
               >

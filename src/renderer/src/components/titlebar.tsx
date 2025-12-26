@@ -22,7 +22,7 @@ function Titlebar() {
         userSelect: "none",
         height: 42,
         /* @ts-ignore */
-        ["--titlebar-height" as any]: "42px"
+        ["--titlebar-height" as any]: "42px",
       }}
     >
       <div className="flex items-center gap-2 text-base font-semibold">
